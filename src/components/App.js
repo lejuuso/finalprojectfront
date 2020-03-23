@@ -3,6 +3,9 @@ import '../App.css';
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
+import Post from "./Post";
+import Delete from "./Delete";
+import Contact from "./Contact";
 
 
 class App extends React.Component {
@@ -30,6 +33,9 @@ class App extends React.Component {
             />
 
           <Header/>
+          <Post />
+          <Delete />
+          <Contact />
           <Main/>
           <Footer/>
         </div>)
