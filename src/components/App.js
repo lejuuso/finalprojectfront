@@ -6,6 +6,7 @@ import Main from "./Main";
 import Post from "./Post";
 import Delete from "./Delete";
 import Contact from "./Contact";
+import Navigation from "./Navigation";
 
 
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
             />
 
           <Header/>
+          <Navigation/>
           <Post />
           <Delete />
           <Contact />
