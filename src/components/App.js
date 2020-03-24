@@ -7,6 +7,8 @@ import Post from "./Post";
 import Delete from "./Delete";
 import Contact from "./Contact";
 import Navigation from "./Navigation";
+import CardList from "./CardList";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -15,12 +17,7 @@ class App extends React.Component {
       data: null,
     };
   }
-    componentDidMount() {
-        fetch('http://localhost:8080/api/meals')
-            .then(response => response.json())
-            .then((response) => this.setState(
-                {meals: response}))
-    }
+    
 
   render() {
     return (
@@ -37,7 +34,7 @@ class App extends React.Component {
           <Navigation/>
           <Delete />
           <Contact />
-          <Main/>
+          <Main />
           <Footer/>
         </div>)
   }
