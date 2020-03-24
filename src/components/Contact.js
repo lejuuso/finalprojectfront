@@ -14,11 +14,11 @@ function Contact() {
                 Vastaa ilmoitukseen
             </Button>
 
-            <Modal show={show} onHide={handleClose}>
+            <Modal centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Vastaus</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><input type="text"/></Modal.Body>
+                <Modal.Body><textarea cols="50" rows={"5"} /></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Sulje
