@@ -7,6 +7,7 @@ import Post from "./Post";
 import Delete from "./Delete";
 import Contact from "./Contact";
 import Navigation from "./Navigation";
+import CardList from "./CardList";
 
 
 class App extends React.Component {
@@ -38,7 +39,7 @@ class App extends React.Component {
           <Post />
           <Delete />
           <Contact />
-          <Main/>
+          <CardList/>
           <Footer/>
         </div>)
   }
