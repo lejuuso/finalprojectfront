@@ -1,23 +1,23 @@
 import React, {Component} from "react";
-import {Button, Card, Row} from "react-bootstrap";
-import Main from "./Main";
+import CardRenderer from "./CardRenderer"
+import DataList from "./DataList";
 
 
-
-
-class  CardList extends Component {
-
+ class CardList extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
-        var cardNodes= this.props.userdata.map(function(data) {
+        console.log(this.props.data)
+        var cardNodes= this.props.data.map(function(data) {
             return(
-                <Card headline={data.headline} name={data.name} description={data.description} postcode = {data.postcode}></Card>
-
+                <CardRenderer headline={data.headline} name={data.name} description={data.description} postcode = {data.postcode}></CardRenderer>
             );
         });
         return(
-            <div className="quoteList">
-                {cardNodes}
-            </div>
+            <div className="cardList">
+                {cardNodes} 
+                </div>
         );}}
 
 export default CardList;
