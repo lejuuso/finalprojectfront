@@ -8,7 +8,6 @@ import Delete from "./Delete";
 import Contact from "./Contact";
 import Navigation from "./Navigation";
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -34,8 +33,8 @@ class App extends React.Component {
             />
 
           <Header/>
-          <Navigation/>
           <Post />
+          <Navigation/>
           <Delete />
           <Contact />
           <Main/>
