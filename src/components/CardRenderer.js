@@ -19,14 +19,15 @@ class CardRenderer extends Component {
             <Card className = "card-column" style={{flex: 2}}>
 
                 <Card.Body>
-                    <Card.Title><b>{this.props.headline}</b></Card.Title>
+                    <Card.Title class = "text-primary"><b>{this.props.headline}</b></Card.Title>
                     <Card.Subtitle><b>{this.props.name}</b></Card.Subtitle>
                     <Card.Text>
                     <Row> {this.props.postcode} </Row>
                     <Row> {this.props.description} </Row>
                     </Card.Text>
-                    <Badge variant="secondary">lemmikki</Badge>{' '}
-                    <Badge variant="secondary">kauppa</Badge>
+
+                    <Badge variant="secondary" className = "badge">lemmikki</Badge>{' '}
+                    <Badge variant="secondary" className = "badge">kauppa</Badge>
 
                 </Card.Body>
             </Card>

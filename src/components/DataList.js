@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 
 
+
 class DataList extends Component {
 
 
@@ -9,9 +10,9 @@ class DataList extends Component {
     render() {
 
         return(
-            <div className="results">
-                <h2>{this.props.headline}</h2>
-                <h3>{this.props.name}</h3>
+            <div className="results" >
+                <h3>{this.props.headline}</h3>
+                <h4>{this.props.name}</h4>
                 <p>{this.props.description}</p>
 
             </div>
