@@ -6,7 +6,8 @@ import {CardColumns} from "react-bootstrap";
 import Renderer from "./Renderer.css"
 import {Container} from "react-bootstrap";
 import {Badge} from "react-bootstrap"
-
+import Contact from "./Contact";
+import Delete from "./Delete";
 
 class CardRenderer extends Component {
 
@@ -27,6 +28,9 @@ class CardRenderer extends Component {
                     </Card.Text>
                     <Badge variant="secondary">lemmikki</Badge>{' '}
                     <Badge variant="secondary">kauppa</Badge>
+                    <div><Contact/></div>
+                    <div><Delete/></div>
+
 
                 </Card.Body>
             </Card>
