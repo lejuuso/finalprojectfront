@@ -17,7 +17,7 @@ class App extends React.Component {
       data: null,
     };
   }
-    
+
 
   render() {
     return (
@@ -30,9 +30,9 @@ class App extends React.Component {
             />
 
           <Header/>
-          <Post />
+          <Post/>
           <Navigation/>
-          <Main />
+          <Main/>
           <Footer/>
         </div>)
   }
