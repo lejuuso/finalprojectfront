@@ -30,8 +30,6 @@ class CardRenderer extends Component {
                     <Badge variant="secondary">kauppa</Badge>
                     <div><Contact/></div>
                     <div><Delete/></div>
-
-
                 </Card.Body>
             </Card>
             </CardColumns>

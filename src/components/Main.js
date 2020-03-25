@@ -14,7 +14,8 @@ class Main extends Component {
             error: null
         }
     }
-   componentDidMount() {
+
+    componentDidMount() {
         fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/all', {method: 'GET'})
         .then(response => response.json())
         .then(response => this.setState({userdata: response, loading: false}))
