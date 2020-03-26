@@ -9,7 +9,7 @@ function Delete() {
 
     return (
         <div>
-            <Button variant="primary" onClick={handleShow}>
+            <Button className="deletebutton" variant="light" size="sm" onClick={handleShow}>
                 Poista ilmoitus
             </Button>
 

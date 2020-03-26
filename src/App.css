@@ -11,6 +11,32 @@
 
 }
 
+.answerbutton {
+  margin: 5%
+
+}
+
+.deletebutton {
+
+}
+
 .form {
   margin: 5%;
+}
+
+.navigation {
+  margin-bottom: 5%;
+}
+
+.footer {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 100%;
+}
+
+.footernavigation {
+}
+
+.logo {
+  margin-bottom: 5%;
 }

@@ -10,7 +10,7 @@ function Contact() {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button className="answerbutton" variant="warning" onClick={handleShow}>
                 Vastaa ilmoitukseen
             </Button>
 
