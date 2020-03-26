@@ -7,9 +7,23 @@ class Post extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleChange =this.handleChange.bind(this);
+        this.handleCheck =this.handleCheck.bind(this);
+        this.handleSubmit =this.handleSubmit.bind(this);
 
         this.state = {
             show: false,
+            name: "",
+            email: "",
+            postcode: "",
+            district: "",
+            description: "",
+            groceries: "false",
+            childCare: "false",
+            dogOut: "false",
+            outdoorCompany: "false",
+            takingOutTrash: "false",
+            other: "false",
         };
     }
     handleClose(){
@@ -19,6 +33,67 @@ class Post extends React.Component {
     handleShow (){
         this.setState({show: true})
     }
+    handleSubmit(){
+        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+    }
+    addDistrictName(){
+        let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
+        return fetch(url, {method: 'GET'})
+            .then(response => response.json())
+            .then(response => this.setState({district: response, loading: false}))
+            .catch(error => this.setState({ error, loading: false}))
+
+    }
+
+    addNewAd(){
+        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/add"
+        let adAsJson = JSON.stringify({
+            name: this.state.name,
+            postcode: this.state.postcode,
+            district: this.state.district,
+            email: this.state.email,
+            headline: this.state.headline,
+            description: this.state.description,
+            groceries: this.state.groceries,
+            childCare: this.state.childCare,
+            dogOut: this.state.childCare,
+            outdoorCompany: this.state.outdoorCompany,
+            takingOutTrash: this.state.takingOutTrash,
+            other: this.state.other
+            })
+        console.log("Add data as json: " +adAsJson)
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: adAsJson
+        })
+    }
+
+    handleChange(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleCheck(event){
+        const target = event.target;
+        const value = "true"
+        //"true" target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+
+    }
+
     render() {
         return (
             <>
@@ -52,12 +127,20 @@ class Post extends React.Component {
                                 </Col>
                             </Form.Group>
                         </fieldset>
+                        <Form.Group as={Row} controlId="formHorizontaHeadline">
+                            <Form.Label column sm={2}>
+                                Otsikko
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="headline" placeholder="Otsikko" name="headline" value={this.state.headline} onChange={this.handleChange}/>
+                            </Col>
+                        </Form.Group>
                         <Form.Group as={Row} controlId="formHorizontalName">
                             <Form.Label column sm={2}>
                                 Nimi
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="name" placeholder="Nimi"/>
+                                <Form.Control type="name" placeholder="Nimi" name="name" value={this.state.name} onChange={this.handleChange}/>
                             </Col>
                         </Form.Group>
 
@@ -66,16 +149,16 @@ class Post extends React.Component {
                                 Sähköposti
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="email" placeholder="Sähköposti"/>
+                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Sähköposti"/>
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formHorizontalLocation">
                             <Form.Label column sm={2}>
-                                Sijainti
+                                Postinumerosi
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="location" placeholder="Alueesi"/>
+                                <Form.Control type="location" name="postcode" value={this.state.postcode} onChange={this.handleChange} placeholder="postinumero"/>
                             </Col>
                         </Form.Group>
 
@@ -86,39 +169,39 @@ class Post extends React.Component {
                                 </Form.Label>
                                 <Col sm={10}>
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Ruokakaupassa käynti"
-                                        name="formHorizontalRadios"
+                                        name="groceries"
                                         id="formHorizontalRadios1"
                                     />
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Lastenhoito"
-                                        name="formHorizontalRadios"
+                                        name="childCare"
                                         id="formHorizontalRadios2"
                                     />
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Koiran ulkoilutus"
-                                        name="formHorizontalRadios"
+                                        name="dogOut"
                                         id="formHorizontalRadios3"
                                     />
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Ulkoiluseuraa"
-                                        name="formHorizontalRadios"
+                                        name="outdoorCompany"
                                         id="formHorizontalRadios4"
                                     />
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Roskien vienti"
-                                        name="formHorizontalRadios"
+                                        name="takingOutTrash"
                                         id="formHorizontalRadios5"
                                     />
                                     <Form.Check
-                                        type="radio"
+                                        onChange={this.handleCheck}
                                         label="Muu"
-                                        name="formHorizontalRadios"
+                                        name="other"
                                         id="formHorizontalRadios6"
                                     />
                                 </Col>
@@ -131,6 +214,9 @@ class Post extends React.Component {
                             <Col sm={10}>
                                 <Form.Control
                                     type="message"
+                                    name="description"
+                                    value={this.state.description}
+                                    onChange={this.handleChange}
                                     placeholder="Kuvaus"/>
                             </Col>
                         </Form.Group>
@@ -139,6 +225,9 @@ class Post extends React.Component {
                                 <Form.Check label="Hyväksyn ehdot*"/>
                             </Col>
                         </Form.Group>
+                        <div><p>Testfield: Name: {this.state.name} Email: {this.state.email} Groceries: {this.state.groceries}</p>
+                        <p>Koiran ulkoilutus: {this.state.dogOut} Postinumero: {this.state.postcode}</p>
+                        <p>Kuvaus: {this.state.description}</p></div>
                     </Form>
 
                     <Modal.Body>* Ilmoituksen jättämisen ehdot: hyväksyn, että
@@ -149,7 +238,7 @@ class Post extends React.Component {
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>
-                        <Button variant="warning" onClick={this.handleClose}>
+                        <Button  onClick={this.handleSubmit}>
                             Lähetä
                         </Button>
                     </Modal.Footer>
@@ -159,3 +248,4 @@ class Post extends React.Component {
     }
 }
 export default Post
+
