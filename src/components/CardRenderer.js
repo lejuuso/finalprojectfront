@@ -17,7 +17,7 @@ class CardRenderer extends Component {
         return(
             <Container>
             <CardColumns style={{display: 'flex', flexDirection: 'row'}}>
-            <Card className = "card-column" style={{flex: 2}}>
+            <Card  className = "card-column" style={{flex: 2}}>
 
                 <Card.Body>
                     <Card.Title><b>{this.props.headline}</b></Card.Title>
@@ -26,9 +26,9 @@ class CardRenderer extends Component {
                     <Row> {this.props.postcode} </Row>
                     <Row> {this.props.description} </Row>
                     </Card.Text>
-                    <Badge variant="secondary">lemmikki</Badge>{' '}
-                    <Badge variant="secondary">kauppa</Badge>
-                    <div><Contact/></div>
+                    <Badge variant="info">lemmikki</Badge>{' '}
+                    <Badge variant="info">kauppa</Badge>
+                    <div><Contact id= {this.props.id}/></div>
                     <div><Delete/></div>
                 </Card.Body>
             </Card>

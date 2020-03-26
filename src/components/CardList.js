@@ -11,7 +11,7 @@ import DataList from "./DataList";
         console.log(this.props.data)
         var cardNodes= this.props.data.map(function(data) {
             return(
-                <CardRenderer headline={data.headline} name={data.name} description={data.description} postcode = {data.postcode}/>
+                <CardRenderer id = {data.id} headline={data.headline} name={data.name} description={data.description} postcode = {data.postcode}/>
             );
         });
         return(
