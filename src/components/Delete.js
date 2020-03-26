@@ -2,7 +2,6 @@ import React, {Component, useState} from "react"
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-
 class Delete extends Component{
     constructor(props, context) {
         super(props, context);
@@ -26,7 +25,7 @@ class Delete extends Component{
     render() {
         return (
             <div>
-                <Button variant="primary" onClick={this.handleShow}>
+                <Button className="deletebutton" variant="light" size="sm" onClick={this.handleShow}>
                     Poista ilmoitus
                 </Button>
 
