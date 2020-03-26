@@ -16,6 +16,7 @@ class Post extends React.Component {
             name: "",
             email: "",
             postcode: "",
+            district: "",
             description: "",
             groceries: "false",
             childCare: "false",
@@ -33,16 +34,26 @@ class Post extends React.Component {
         this.setState({show: true})
     }
     handleSubmit(){
-        this.addNewAd().then(() => this.handleClose());
+        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+    }
+    addDistrictName(){
+        let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
+        return fetch(url, {method: 'GET'})
+            .then(response => response.json())
+            .then(response => this.setState({district: response, loading: false}))
+            .catch(error => this.setState({ error, loading: false}))
+
     }
 
     addNewAd(){
-        const url = "http://localhost:8080/api/add"
+        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/add"
         let adAsJson = JSON.stringify({
             name: this.state.name,
             postcode: this.state.postcode,
+            district: this.state.district,
             email: this.state.email,
-            headline: this.state.description,
+            headline: this.state.headline,
+            description: this.state.description,
             groceries: this.state.groceries,
             childCare: this.state.childCare,
             dogOut: this.state.childCare,
@@ -70,6 +81,7 @@ class Post extends React.Component {
             [name]: value
         });
     }
+
     handleCheck(event){
         const target = event.target;
         const value = "true"
@@ -115,6 +127,14 @@ class Post extends React.Component {
                                 </Col>
                             </Form.Group>
                         </fieldset>
+                        <Form.Group as={Row} controlId="formHorizontaHeadline">
+                            <Form.Label column sm={2}>
+                                Otsikko
+                            </Form.Label>
+                            <Col sm={10}>
+                                <Form.Control type="headline" placeholder="Otsikko" name="headline" value={this.state.headline} onChange={this.handleChange}/>
+                            </Col>
+                        </Form.Group>
                         <Form.Group as={Row} controlId="formHorizontalName">
                             <Form.Label column sm={2}>
                                 Nimi
@@ -229,4 +249,3 @@ class Post extends React.Component {
 }
 export default Post
 
-//variant="warning"
