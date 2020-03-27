@@ -24,7 +24,7 @@ class CardRenderer extends Component {
                     <Card.Text>{this.props.description}
                     </Card.Text>
                    <Contact id= {this.props.id}/>
-                    <Delete/>
+                    <Delete id={this.props.id}/>
                 </Card.Body>  
               </Card>
              </CardColumns>
