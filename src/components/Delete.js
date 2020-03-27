@@ -8,7 +8,7 @@ class Delete extends Component{
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        
+        this.handleDelete = this.handleDelete.bind(this);
 
         this.state = {
             show: false,
@@ -22,6 +22,19 @@ class Delete extends Component{
     handleShow (){
         this.setState({show: true})
     }
+
+    handleDelete(){
+        this.delete().then(()=>this.handleClose())
+    }
+
+    async delete(){
+        const res = await fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api', {
+            method: 'DELETE',
+        });
+        const res_1 = await res.text();
+        return console.log(res_1);
+    }
+
     render() {
         return (
             <div>
@@ -38,7 +51,7 @@ class Delete extends Component{
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>
-                        <Button variant="primary" onClick={this.handleClose}>
+                        <Button variant="primary" onClick={this.handleDelete}>
                             Poista
                         </Button>
                     </Modal.Footer>
