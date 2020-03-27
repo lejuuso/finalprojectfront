@@ -23,13 +23,14 @@ class CardRenderer extends Component {
                     <Card.Title><b>{this.props.headline}</b></Card.Title>
                     <Card.Subtitle><b>{this.props.name}</b></Card.Subtitle>
                     <Card.Text>
+                    <Row> {this.props.district}</Row>
                     <Row> {this.props.postcode} </Row>
                     <Row> {this.props.description} </Row>
                     </Card.Text>
                     <Badge variant="info">lemmikki</Badge>{' '}
                     <Badge variant="info">kauppa</Badge>
                     <div><Contact id= {this.props.id}/></div>
-                    <div><Delete/></div>
+                    <div><Delete id={this.props.id}/></div>
                 </Card.Body>
             </Card>
             </CardColumns>

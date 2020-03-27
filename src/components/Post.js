@@ -24,6 +24,8 @@ class Post extends React.Component {
             outdoorCompany: "false",
             takingOutTrash: "false",
             other: "false",
+            helpWanted: "true",
+            helpOffered: false,
         };
     }
     handleClose(){
@@ -40,8 +42,10 @@ class Post extends React.Component {
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
         return fetch(url, {method: 'GET'})
             .then(response => response.json())
-            .then(response => this.setState({district: response, loading: false}))
+            .then(data => this.setState({ district: data.districtName }))
+            //.then(response => this.setState({district: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
+            console.log("This State: " +this.state.district)
 
     }
 
@@ -50,7 +54,7 @@ class Post extends React.Component {
         let adAsJson = JSON.stringify({
             name: this.state.name,
             postcode: this.state.postcode,
-            district: this.state.district,
+            districtName: this.state.district,
             email: this.state.email,
             headline: this.state.headline,
             description: this.state.description,
@@ -84,14 +88,23 @@ class Post extends React.Component {
 
     handleCheck(event){
         const target = event.target;
-        const value = "true"
-        //"true" target.value;
         const name = target.name;
-
+        var value = ""
+        if(this.state[name]==="false"){
+        var value = "true"}
+        else{var value = "false"}
+         //"true" target.value;
         this.setState({
             [name]: value
         });
-
+    }
+    handleHelpOfferedOrWanted(event){
+        let wanted = this.state.helpWanted;
+        console.log("HelpWantedState: "+wanted)
+        if(wanted=== "true"){
+            this.setState({helpWanted: "false", helpOffered: true})
+        }
+        else {this.setState({helpWanted: "true", helpOffered: false})}
     }
 
     render() {
@@ -117,12 +130,15 @@ class Post extends React.Component {
                                         label="Tarvitsen apua"
                                         name="formHorizontalRadios"
                                         id="formHorizontalRadios7"
+                                        defaultChecked={true}
+                                        onChange={this.handleHelpOfferedOrWanted}
                                     />
                                     <Form.Check
                                         type="radio"
                                         label="Tarjoan apua"
                                         name="formHorizontalRadios"
                                         id="formHorizontalRadios8"
+                                        onChange={this.handleHelpOfferedOrWanted}
                                     />
                                 </Col>
                             </Form.Group>
@@ -169,37 +185,37 @@ class Post extends React.Component {
                                 </Form.Label>
                                 <Col sm={10}>
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Ruokakaupassa käynti"
                                         name="groceries"
                                         id="formHorizontalRadios1"
                                     />
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Lastenhoito"
                                         name="childCare"
                                         id="formHorizontalRadios2"
                                     />
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Koiran ulkoilutus"
                                         name="dogOut"
                                         id="formHorizontalRadios3"
                                     />
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Ulkoiluseuraa"
                                         name="outdoorCompany"
                                         id="formHorizontalRadios4"
                                     />
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Roskien vienti"
                                         name="takingOutTrash"
                                         id="formHorizontalRadios5"
                                     />
                                     <Form.Check
-                                        onChange={this.handleCheck}
+                                        onClick={this.handleCheck}
                                         label="Muu"
                                         name="other"
                                         id="formHorizontalRadios6"
@@ -227,7 +243,8 @@ class Post extends React.Component {
                         </Form.Group>
                         <div><p>Testfield: Name: {this.state.name} Email: {this.state.email} Groceries: {this.state.groceries}</p>
                         <p>Koiran ulkoilutus: {this.state.dogOut} Postinumero: {this.state.postcode}</p>
-                        <p>Kuvaus: {this.state.description}</p></div>
+                        <p>Kuvaus: {this.state.description}</p>
+                        <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>
                     </Form>
 
                     <Modal.Body>* Ilmoituksen jättämisen ehdot: hyväksyn, että
