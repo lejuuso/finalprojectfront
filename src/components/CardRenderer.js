@@ -61,11 +61,12 @@ class CardRenderer extends Component {
                     <Card.Subtitle>{this.props.headline}</Card.Subtitle>
                     <Card.Text>{this.props.description}
                     </Card.Text>
-                    <div><Contact id= {this.props.id}/></div>
-                    <div><Delete id={this.props.id}/></div>
-                </Card.Body>
-            </Card>
-            </CardColumns>
+
+                   <Contact id= {this.props.id}/>
+                    <Delete id={this.props.id}/>
+                </Card.Body>  
+              </Card>
+             </CardColumns>
             </Container>
 
         );}}
