@@ -1,5 +1,9 @@
 import React from "react"
 import {Modal, Button, Form, Row, Col} from "react-bootstrap"
+import SaanaRailo from "./Saana Railo.png";
+import JuusoLeppanen from "./Juuso Leppänen.png"
+import InkaKekalainen from "./Inka Kekäläinen (1) (2).png"
+import RobinBlomberg from "./Robin Blomberg.png"
 
 class Holler extends React.Component {
     constructor(props, context) {
@@ -7,6 +11,7 @@ class Holler extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit =this.handleSubmit.bind(this);
 
         this.state = {
             show: false,
@@ -19,6 +24,9 @@ class Holler extends React.Component {
 
     handleShow() {
         this.setState({show: true})
+    }
+    handleSubmit(){
+        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
     }
 
     render() {
@@ -35,6 +43,13 @@ class Holler extends React.Component {
                     <Modal.Body>
                         Korona-apu on AW Academy Finlandin oppilaiden lopputyönä toteutettu sovellus.
                         <p></p>
+                        <img src={SaanaRailo} alt="Saana Railo" width={100} className="SaanaRailo"/>
+                        <img src={JuusoLeppanen} alt="Juuso Leppanen" width={100} className="JuusoLeppanen"/>
+                        <img src={InkaKekalainen} alt="Inka Kekalainen" width={100} className="InkaKekalainen"/>
+                        <img src={RobinBlomberg} alt="Robin Blomberg" width={100} className="RobinBlomberg"/>
+                        <p></p>
+                        <p><i>Saana Railo, Juuso Leppänen, Inka Kekäläinen ja Robin Blomberg</i></p>
+
 
                         <Form className={"hollerform"}>
                             <Form.Group as={Row} controlId="formHorizontalName">
@@ -67,12 +82,13 @@ class Holler extends React.Component {
                                 </Col>
                             </Form.Group>
                         </Form>
+
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Sulje
                         </Button>
-                        <Button variant="warning" onClick={this.handleClose}>
+                        <Button variant="warning" onClick={this.handleSubmit}>
                             Lähetä
                         </Button>
                     </Modal.Footer>
