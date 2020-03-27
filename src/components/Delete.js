@@ -67,7 +67,7 @@ class Delete extends Component{
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>
-                        <Button variant="primary" onClick={this.handleDelete}>
+                        <Button type="submit" variant="primary" onClick={this.handleDelete}>
                             Poista
                         </Button>
                     </Modal.Footer>
