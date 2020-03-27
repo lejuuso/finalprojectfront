@@ -213,6 +213,7 @@ class Post extends React.Component {
                             </Form.Label>
                             <Col sm={10}>
                                 <Form.Control
+                                    as="textarea"
                                     type="message"
                                     name="description"
                                     value={this.state.description}
