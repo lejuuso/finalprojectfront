@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Card} from "react-bootstrap";
+import {Card, CardLink} from "react-bootstrap";
 import {Row} from "react-bootstrap";
 import {Button} from "react-bootstrap";
 import {CardColumns} from "react-bootstrap";
@@ -17,15 +17,14 @@ class CardRenderer extends Component {
         return(
             <Container>
             <CardColumns style={{display: 'responsive'}}>
-            <Card border="primary" style={{ width: '18rem' }}>
-                <Card.Header>{this.props.headline}<br/>{this.props.postcode}</Card.Header>
+            <Card border="primary" style={{ width: '25rem' }} >
+                <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
                 <Card.Body>
-                    <Card.Subtitle>{this.props.name}</Card.Subtitle>
-                    <Card.Text>
-                     {this.props.description}
+                    <Card.Subtitle>{this.props.headline}</Card.Subtitle>
+                    <Card.Text>{this.props.description}
                     </Card.Text>
-                    <div><Contact id= {this.props.id}/></div> <div><Delete/></div>
-
+                   <Contact id= {this.props.id}/>
+                    <Delete/>
                 </Card.Body>
             </Card>
             </CardColumns>
