@@ -10,9 +10,15 @@ class Post extends React.Component {
         this.handleChange =this.handleChange.bind(this);
         this.handleCheck =this.handleCheck.bind(this);
         this.handleSubmit =this.handleSubmit.bind(this);
+        this.handleHelpOfferedOrWanted =this.handleHelpOfferedOrWanted.bind(this)
+        this.addNewHelpOfferedAd =this.addNewHelpOfferedAd.bind(this)
+        this.handleAgreeToTerms =this.handleAgreeToTerms.bind(this)
+        this.handCloseTermsMessage = this.handCloseTermsMessage.bind(this)
+        //this.createJsonString= this.createJsonString.bind(this)
 
         this.state = {
             show: false,
+            showMessage: false,
             name: "",
             email: "",
             postcode: "",
@@ -26,18 +32,32 @@ class Post extends React.Component {
             other: "false",
             helpWanted: "true",
             helpOffered: false,
+            agreedToTerms: false,
         };
     }
     handleClose(){
         this.setState({show:false})
+    }
+    handCloseTermsMessage(){
+        this.setState({showMessage: false})
     }
 
     handleShow (){
         this.setState({show: true})
     }
     handleSubmit(){
-        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+        if(this.state.agreedToTerms === true) {
+            if (this.state.helpWanted === "true") {
+                this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+            } else {
+                this.addDistrictName().then(() => this.addNewHelpOfferedAd()).then(() => this.handleClose());
+            }
+        }
+        else{
+            this.setState({showMessage:true})
+            }
     }
+
     addDistrictName(){
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
         return fetch(url, {method: 'GET'})
@@ -48,23 +68,11 @@ class Post extends React.Component {
             console.log("This State: " +this.state.district)
 
     }
+    addNewHelpOfferedAd(){}
 
     addNewAd(){
         const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/add"
-        let adAsJson = JSON.stringify({
-            name: this.state.name,
-            postcode: this.state.postcode,
-            districtName: this.state.district,
-            email: this.state.email,
-            headline: this.state.headline,
-            description: this.state.description,
-            groceries: this.state.groceries,
-            childCare: this.state.childCare,
-            dogOut: this.state.childCare,
-            outdoorCompany: this.state.outdoorCompany,
-            takingOutTrash: this.state.takingOutTrash,
-            other: this.state.other
-            })
+        let adAsJson = this.createJsonString()
         console.log("Add data as json: " +adAsJson)
         return fetch(url, {
             method: 'POST',
@@ -86,6 +94,33 @@ class Post extends React.Component {
         });
     }
 
+    handleAgreeToTerms(){
+        if(this.state.agreedToTerms === false){
+            this.setState({agreedToTerms: true})
+        }
+        else{this.setState({agreedToTerms: false})}
+
+
+    }
+    createJsonString(){
+        let JsonString = JSON.stringify({
+            name: this.state.name,
+            postcode: this.state.postcode,
+            districtName: this.state.district,
+            email: this.state.email,
+            headline: this.state.headline,
+            description: this.state.description,
+            groceries: this.state.groceries,
+            childCare: this.state.childCare,
+            dogOut: this.state.childCare,
+            outdoorCompany: this.state.outdoorCompany,
+            takingOutTrash: this.state.takingOutTrash,
+            other: this.state.other
+        })
+        return JsonString
+
+    }
+
     handleCheck(event){
         const target = event.target;
         const name = target.name;
@@ -93,12 +128,12 @@ class Post extends React.Component {
         if(this.state[name]==="false"){
         var value = "true"}
         else{var value = "false"}
-         //"true" target.value;
         this.setState({
             [name]: value
         });
+
     }
-    handleHelpOfferedOrWanted(event){
+    handleHelpOfferedOrWanted(){
         let wanted = this.state.helpWanted;
         console.log("HelpWantedState: "+wanted)
         if(wanted=== "true"){
@@ -239,13 +274,16 @@ class Post extends React.Component {
                         </Form.Group>
                         <Form.Group as={Row} controlId="formHorizontalCheck">
                             <Col sm={{span: 10, offset: 2}}>
-                                <Form.Check label="Hyväksyn ehdot*"/>
+                                <Form.Check label="Hyväksyn ehdot*" onClick={this.handleAgreeToTerms}/>
                             </Col>
                         </Form.Group>
-                        <div><p>Testfield: Name: {this.state.name} Email: {this.state.email} Groceries: {this.state.groceries}</p>
-                        <p>Koiran ulkoilutus: {this.state.dogOut} Postinumero: {this.state.postcode}</p>
-                        <p>Kuvaus: {this.state.description}</p>
-                        <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>
+                        <div><p>Testfield: Name: {this.state.name} Email: {this.state.email}</p>
+                            <p>Postinumero: {this.state.postcode}</p>
+                            <p>Kaupassakäynti: {this.state.groceries}</p>
+                            <p>Lastenhoito: {this.state.childCare}</p>
+                            <p>Koiran ulkoilutus: {this.state.dogOut}</p>
+                            <p>Kuvaus: {this.state.description}</p>
+                            <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>
                     </Form>
 
                     <Modal.Body>* Ilmoituksen jättämisen ehdot: hyväksyn, että
@@ -260,6 +298,10 @@ class Post extends React.Component {
                             Lähetä
                         </Button>
                     </Modal.Footer>
+                </Modal>
+                <Modal centered show={this.state.showMessage} onHide={this.handleClose}>
+                    <p>Ennen ilmoituksen jättämistä on hyväksyttävä ilmoitukseen liittyvät ehdot.</p>
+                    <Button onClick={this.handCloseTermsMessage}>Sulje</Button>
                 </Modal>
             </>
         );

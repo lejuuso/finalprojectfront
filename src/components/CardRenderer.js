@@ -10,6 +10,33 @@ import Contact from "./Contact";
 import Delete from "./Delete";
 
 class CardRenderer extends Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.state = {dogOut: ""}
+
+        this.renderBadge = this.renderBadge.bind(this)
+    }
+
+    renderBadge(prop){
+        if(prop === true){
+            if(prop === this.props.dogout) {
+                return <div>koira</div>
+            }
+            if(prop === this.props.groceries){
+                return <div>kauppa</div>
+            }
+            if(prop === this.props.childcare){
+                return <div>lastenhoito</div>
+            }
+        }
+    }
+
+    dogOut(){
+       // if(this.props.dogout=== true){
+            this.setState({dogOut: "koira"})
+        //}
+    }
 
 
     render() {
@@ -28,8 +55,9 @@ class CardRenderer extends Component {
                     <Row> {this.props.postcode} </Row>
                     <Row> {this.props.description} </Row>
                     </Card.Text>
-                    <Badge variant="info">lemmikki</Badge>{' '}
-                    <Badge variant="info">kauppa</Badge>
+                    <Badge variant="info">{this.renderBadge(this.props.dogout)}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.groceries)}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.childcare)}</Badge>{' '}
                     <Card.Subtitle>{this.props.headline}</Card.Subtitle>
                     <Card.Text>{this.props.description}
                     </Card.Text>
