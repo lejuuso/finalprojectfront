@@ -19,15 +19,15 @@ class CardRenderer extends Component {
             <CardColumns style={{display: 'responsive'}}>
             <Card border="primary" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
-                <Card.Body>
+                 <Card.Body>
                     <Card.Subtitle>{this.props.headline}</Card.Subtitle>
                     <Card.Text>{this.props.description}
                     </Card.Text>
                    <Contact id= {this.props.id}/>
                     <Delete/>
-                </Card.Body>
-            </Card>
-            </CardColumns>
+                </Card.Body>  
+              </Card>
+             </CardColumns>
             </Container>
 
         );}}
