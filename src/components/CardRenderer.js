@@ -13,31 +13,14 @@ class CardRenderer extends Component {
     constructor(props, context) {
         super(props, context);
 
-        this.state = {dogOut: ""}
-
         this.renderBadge = this.renderBadge.bind(this)
     }
 
-    renderBadge(prop){
-        if(prop === true){
-            if(prop === this.props.dogout) {
-                return <div>koira</div>
-            }
-            if(prop === this.props.groceries){
-                return <div>kauppa</div>
-            }
-            if(prop === this.props.childcare){
-                return <div>lastenhoito</div>
-            }
+    renderBadge(prop, tagName){
+        if(prop){
+            return <div>{tagName}</div>
         }
     }
-
-    dogOut(){
-       // if(this.props.dogout=== true){
-            this.setState({dogOut: "koira"})
-        //}
-    }
-
 
     render() {
 
@@ -51,11 +34,14 @@ class CardRenderer extends Component {
                     <Card.Text>
                      {this.props.description}
                     </Card.Text>
-                    <Badge variant="info">{this.renderBadge(this.props.dogout)}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.groceries)}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.childcare)}</Badge>{' '}
-                    <div><Contact id= {this.props.id}/>
-                    <Delete id={this.props.id}/></div>
+                    <Badge variant="info">{this.renderBadge(this.props.dogout, "koira")}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.groceries, "kauppa")}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.childcare, "lastenhoito")}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.takingouttrash, "roskat")}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.outdoorcompany, "ulkoilu")}</Badge>{' '}
+                    <Badge variant="info">{this.renderBadge(this.props.other, "muu")}</Badge>{' '}
+                    <div><Contact id= {this.props.id}/></div>
+                    <div><Delete id={this.props.id}/></div>
                 </Card.Body>
                 </Card>
              </CardColumns>

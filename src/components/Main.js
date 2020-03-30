@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardList from "./CardList"
+import HelperOfferedAdds from "./HelperOfferedAdds";
 
 
 
@@ -13,6 +14,7 @@ class Main extends Component {
             loading: true,
             error: null
         }
+    this.renderHelpneeded = this.renderHelpneeded.bind(this)
     }
 
     componentDidMount() {
@@ -22,12 +24,26 @@ class Main extends Component {
         .catch(error => this.setState({ error, loading: false}))
     }
 
-    render() {
-        if (this.state.loading) return <div>Loading...</div>;
-        if (this.state.error) return <div>Error</div>;
-        console.log(this.state.userdata)
-        if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
-        return <div>No data was found</div>
+    renderHelpneeded(){
+
+
     }
+
+    render() {
+        if(this.props.helpNeeded){
+            if (this.state.loading) return <div>Loading...</div>;
+            if (this.state.error) return <div>Error</div>;
+            console.log(this.state.userdata)
+            if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
+            return <div>No data was found</div>
+
+        }
+        else {
+            return <HelperOfferedAdds/>
+
+        }
+    }
+
+
 }
 export default Main;
