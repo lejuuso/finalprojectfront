@@ -1,11 +1,10 @@
-.card-column {
-    display: flex;
+.card-columns {
+    display: inline-table;
     justify-content: space-around;
     flex-wrap: wrap;
-    color: #61dafb;
+    margin: 1%;
 }
-.card-column {
 
-    max-width: 40%;
-}
+
+
 
