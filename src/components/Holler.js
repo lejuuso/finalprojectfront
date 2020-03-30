@@ -11,10 +11,15 @@ class Holler extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
-        this.handleSubmit =this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
             show: false,
+            name: "",
+            email: "",
+            message: ""
         };
     }
 
@@ -25,8 +30,51 @@ class Holler extends React.Component {
     handleShow() {
         this.setState({show: true})
     }
-    handleSubmit(){
-        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+
+    handleSubmit() {
+        this.addNewAd().then(() => this.handleClose());
+    }
+
+    addNewAd() {
+
+        const url = 'holler'
+        let adAsJson = JSON.stringify({
+            name: this.state.name,
+            email: this.state.email,
+            message: this.state.message
+
+        })
+        console.log("Add data as json: " + adAsJson)
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: adAsJson
+        })
+    }
+
+    handleChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleCheck(event) {
+        const target = event.target;
+        const value = "true"
+        //"true" target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+
     }
 
     render() {
@@ -57,7 +105,7 @@ class Holler extends React.Component {
                                     Nimi
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="name" placeholder="Nimi"/>
+                                    <Form.Control type="name" name="name" placeholder="Nimi" value={this.state.name} onChange={this.handleChange}/>
                                 </Col>
                             </Form.Group>
 
@@ -66,7 +114,7 @@ class Holler extends React.Component {
                                     Sähköposti
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control type="email" placeholder="Sähköposti"/>
+                                    <Form.Control type="email" name="email" placeholder="Sähköposti" value={this.state.email} onChange={this.handleChange}/>
                                 </Col>
                             </Form.Group>
 
@@ -75,10 +123,7 @@ class Holler extends React.Component {
                                     Viesti
                                 </Form.Label>
                                 <Col sm={10}>
-                                    <Form.Control
-                                        as="textarea"
-                                        type="message"
-                                        placeholder="Viesti"/>
+                                    <Form.Control as="textarea" type="message" name="message" placeholder="Viesti" value={this.state.message} onChange={this.handleChange}/>
                                 </Col>
                             </Form.Group>
                         </Form>
