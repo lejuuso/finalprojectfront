@@ -40,9 +40,6 @@ class CardRenderer extends Component {
                     <Badge variant="info">{this.renderBadge(this.props.takingouttrash, "roskat")}</Badge>{' '}
                     <Badge variant="info">{this.renderBadge(this.props.outdoorcompany, "ulkoilu")}</Badge>{' '}
                     <Badge variant="info">{this.renderBadge(this.props.other, "muu")}</Badge>{' '}
-                    <Card.Subtitle>{this.props.headline}</Card.Subtitle>
-                    <Card.Text>{this.props.description}
-                    </Card.Text>
                     <div><Contact id= {this.props.id}/></div>
                     <div><Delete id={this.props.id}/></div>
                 </Card.Body>
