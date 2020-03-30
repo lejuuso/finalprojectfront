@@ -47,25 +47,17 @@ class CardRenderer extends Component {
             <Card border="primary" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
                 <Card.Body>
-
                     <Card.Title><b>{this.props.headline}</b></Card.Title>
-                    <Card.Subtitle><b>{this.props.name}</b></Card.Subtitle>
                     <Card.Text>
-                    <Row> {this.props.district}</Row>
-                    <Row> {this.props.postcode} </Row>
-                    <Row> {this.props.description} </Row>
+                     {this.props.description}
                     </Card.Text>
                     <Badge variant="info">{this.renderBadge(this.props.dogout)}</Badge>{' '}
                     <Badge variant="info">{this.renderBadge(this.props.groceries)}</Badge>{' '}
                     <Badge variant="info">{this.renderBadge(this.props.childcare)}</Badge>{' '}
-                    <Card.Subtitle>{this.props.headline}</Card.Subtitle>
-                    <Card.Text>{this.props.description}
-                    </Card.Text>
-
-                   <Contact id= {this.props.id}/>
-                    <Delete id={this.props.id}/>
-                </Card.Body>  
-              </Card>
+                    <div><Contact id= {this.props.id}/>
+                    <Delete id={this.props.id}/></div>
+                </Card.Body>
+                </Card>
              </CardColumns>
             </Container>
 
