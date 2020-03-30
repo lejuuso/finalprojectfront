@@ -1,47 +1,51 @@
 import React, {Component} from "react";
 import CardList from "./CardList"
 import HelperOfferedAdds from "./HelperOfferedAdds";
+import HelpWantedAdds from "./HelpWantedAdds";
+import Autocomplete from "./Autocomplete";
+import LocationsAutocomplete from "./LocationsAutocomplete";
 
 
 
 class Main extends Component {
 
-    //await
     constructor(props) {
         super(props);
         this.state = {
-            userdata: [],
-            loading: true,
-            error: null
+            districtSearch: ""
+
         }
-    this.renderHelpneeded = this.renderHelpneeded.bind(this)
+        this.handleChange= this.handleChange.bind(this)
     }
+    handleChange(event){
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
 
-    componentDidMount() {
-        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/all', {method: 'GET'})
-        .then(response => response.json())
-        .then(response => this.setState({userdata: response, loading: false}))
-        .catch(error => this.setState({ error, loading: false}))
-    }
+        this.setState({
+            [name]: value
+        });}
 
-    renderHelpneeded(){
-
-
-    }
-
-    render() {
+    whatToRender(){
         if(this.props.helpNeeded){
-            if (this.state.loading) return <div>Loading...</div>;
-            if (this.state.error) return <div>Error</div>;
-            console.log(this.state.userdata)
-            if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
-            return <div>No data was found</div>
 
+            return <HelpWantedAdds/>
         }
         else {
             return <HelperOfferedAdds/>
 
         }
+
+    }
+
+    render() {
+        return <div>
+            <LocationsAutocomplete input="text" name='districtSearch' value={this.state.districtSearch} onChange={this.handleChange}/>
+            <h2>Testikenttä: {this.state.districtSearch}</h2>
+            {this.whatToRender()}
+        </div>
+
+
     }
 
 
