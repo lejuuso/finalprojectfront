@@ -78,7 +78,7 @@ class Contact extends Component {
 
         return (
             <>
-                <Button className="answerbutton" variant="warning" onClick={this.handleShow}>
+                <Button className="answerbutton" variant="warning" size="sm" onClick={this.handleShow}>
                     Vastaa ilmoitukseen
                 </Button>
 

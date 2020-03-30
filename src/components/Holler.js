@@ -1,5 +1,9 @@
 import React from "react"
 import {Modal, Button, Form, Row, Col} from "react-bootstrap"
+import SaanaRailo from "./Saana Railo.png";
+import JuusoLeppanen from "./Juuso Leppänen.png"
+import InkaKekalainen from "./Inka Kekäläinen (1) (2).png"
+import RobinBlomberg from "./Robin Blomberg.png"
 
 class Holler extends React.Component {
     constructor(props, context) {
@@ -7,18 +11,24 @@ class Holler extends React.Component {
 
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleSubmit =this.handleSubmit.bind(this);
 
         this.state = {
             show: false,
         };
     }
-    handleClose(){
-        this.setState({show:false})
+
+    handleClose() {
+        this.setState({show: false})
     }
 
-    handleShow (){
+    handleShow() {
         this.setState({show: true})
     }
+    handleSubmit(){
+        this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+    }
+
     render() {
         return (
             <>
@@ -32,27 +42,33 @@ class Holler extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         Korona-apu on AW Academy Finlandin oppilaiden lopputyönä toteutettu sovellus.
-                    <p></p>
+                        <p></p>
+                        <img src={SaanaRailo} alt="Saana Railo" width={100} className="SaanaRailo"/>
+                        <img src={JuusoLeppanen} alt="Juuso Leppanen" width={100} className="JuusoLeppanen"/>
+                        <img src={InkaKekalainen} alt="Inka Kekalainen" width={100} className="InkaKekalainen"/>
+                        <img src={RobinBlomberg} alt="Robin Blomberg" width={100} className="RobinBlomberg"/>
+                        <p></p>
+                        <p><i>Saana Railo, Juuso Leppänen, Inka Kekäläinen ja Robin Blomberg</i></p>
 
 
                         <Form className={"hollerform"}>
-                        <Form.Group as={Row} controlId="formHorizontalName">
-                            <Form.Label column sm={2}>
-                                Nimi
-                            </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="name" placeholder="Nimi"/>
-                            </Col>
-                        </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalName">
+                                <Form.Label column sm={2}>
+                                    Nimi
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control type="name" placeholder="Nimi"/>
+                                </Col>
+                            </Form.Group>
 
-                        <Form.Group as={Row} controlId="formHorizontalEmail">
-                            <Form.Label column sm={2}>
-                                Sähköposti
-                            </Form.Label>
-                            <Col sm={10}>
-                                <Form.Control type="email" placeholder="Sähköposti"/>
-                            </Col>
-                        </Form.Group>
+                            <Form.Group as={Row} controlId="formHorizontalEmail">
+                                <Form.Label column sm={2}>
+                                    Sähköposti
+                                </Form.Label>
+                                <Col sm={10}>
+                                    <Form.Control type="email" placeholder="Sähköposti"/>
+                                </Col>
+                            </Form.Group>
 
                             <Form.Group as={Row} controlId="formHorizontalMessage">
                                 <Form.Label column sm={2}>
@@ -60,21 +76,19 @@ class Holler extends React.Component {
                                 </Form.Label>
                                 <Col sm={10}>
                                     <Form.Control
+                                        as="textarea"
                                         type="message"
-                                        placeholder="Kuvaus"/>
+                                        placeholder="Viesti"/>
                                 </Col>
                             </Form.Group>
-
                         </Form>
 
-                        <p>Kirjoita meille:</p>
-                    <textarea cols="50" rows={"5"} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Sulje
                         </Button>
-                        <Button variant="warning" onClick={this.handleClose}>
+                        <Button variant="warning" onClick={this.handleSubmit}>
                             Lähetä
                         </Button>
                     </Modal.Footer>
@@ -83,4 +97,5 @@ class Holler extends React.Component {
         );
     }
 }
+
 export default Holler
