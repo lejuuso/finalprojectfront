@@ -68,7 +68,19 @@ class Post extends React.Component {
             console.log("This State: " +this.state.district)
 
     }
-    addNewHelpOfferedAd(){}
+    addNewHelpOfferedAd(){
+        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/insert"
+        let adAsJson = this.createJsonString()
+        console.log("Add data as json: " +adAsJson)
+        return fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: adAsJson
+        })
+    }
 
     addNewAd(){
         const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/add"

@@ -32,7 +32,6 @@ class App extends React.Component {
           <Header/>
           <Post/>
           <Navigation/>
-          <Main/>
           <Footer/>
         </div>)
   }
