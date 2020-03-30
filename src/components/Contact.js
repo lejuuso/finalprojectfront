@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {Form} from "react-bootstrap";
 
+
 class Contact extends Component {
     constructor(props, context) {
         super(props, context);
@@ -33,7 +34,8 @@ class Contact extends Component {
     }
 
     addNewAd(){
-        const url = "https://qx4p2dnjdf.execute-api.eu-west-1.amazonaws.com/test/contact"
+
+        const url = 'contact'
         let adAsJson = JSON.stringify({
             email: this.state.email,
             message: this.state.message,
@@ -41,7 +43,7 @@ class Contact extends Component {
 
         })
         console.log("Add data as json: " +adAsJson)
-        return fetch(url, {
+        return fetch(url,  {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -90,7 +92,7 @@ class Contact extends Component {
                         <Button variant="secondary" onClick={this.handleClose}>
                             Sulje
                         </Button>
-                        <Button variant="primary" onClick={this.handleSubmit}>
+                        <Button onClick={this.handleSubmit}>
                             Lähetä
                         </Button>
                     </Modal.Footer>
