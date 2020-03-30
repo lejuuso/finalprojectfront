@@ -1,11 +1,11 @@
-import React from "react"
+import React, {Component} from "react"
 import {Modal, Button, Form, Row, Col} from "react-bootstrap"
 import SaanaRailo from "./Saana Railo.png";
 import JuusoLeppanen from "./Juuso Leppänen.png"
 import InkaKekalainen from "./Inka Kekäläinen (1) (2).png"
 import RobinBlomberg from "./Robin Blomberg.png"
 
-class Holler extends React.Component {
+class Holler extends Component {
     constructor(props, context) {
         super(props, context);
 
@@ -37,7 +37,7 @@ class Holler extends React.Component {
 
     addNewAd() {
 
-        const url = 'holler'
+        const url = 'https://qx4p2dnjdf.execute-api.eu-west-1.amazonaws.com/test/holler'
         let adAsJson = JSON.stringify({
             name: this.state.name,
             email: this.state.email,

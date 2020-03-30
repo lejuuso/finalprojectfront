@@ -35,7 +35,7 @@ class Contact extends Component {
 
     addNewAd(){
 
-        const url = 'contact'
+        const url = 'https://qx4p2dnjdf.execute-api.eu-west-1.amazonaws.com/test/contact'
         let adAsJson = JSON.stringify({
             email: this.state.email,
             message: this.state.message,
