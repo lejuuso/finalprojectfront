@@ -10,6 +10,11 @@
   font-family: 'Fredoka One', cursive;
 }
 
+.miniheader {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
+
 .button {
   margin-bottom: 5%
 
