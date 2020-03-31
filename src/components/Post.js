@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react"
+import React from "react"
 import {Modal, Button, Form, Col, Row} from "react-bootstrap"
 
 class Post extends React.Component {

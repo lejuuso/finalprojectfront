@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import {Card, CardDeck, CardLink, Col} from "react-bootstrap";
-import {Row} from "react-bootstrap";
-import {Button} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {CardColumns} from "react-bootstrap";
 import Renderer from "./Renderer.css"
-import {Container} from "react-bootstrap";
 import {Badge} from "react-bootstrap"
 import Contact from "./Contact";
 import Delete from "./Delete";
