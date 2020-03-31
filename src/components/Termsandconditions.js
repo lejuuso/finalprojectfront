@@ -22,7 +22,7 @@ class Termsandconditions extends React.Component {
     render() {
         return (
             <>
-                <Button className={"button"} variant="light" onClick={this.handleShow}>
+                <Button className={"tcbutton"} variant="light" onClick={this.handleShow}>
                     Käyttöehdot
                 </Button>
 
@@ -33,7 +33,8 @@ class Termsandconditions extends React.Component {
                     <Modal.Body>Ilmoituksen jättämisen ehdot: hyväksyn, että
                         nimi-kentässä ilmoittamani nimi julkaistaan sivulla. Sähköposti
                         ei tule näkymään sivuilla julkisesti, mutta sivujen kautta tehdyt yhteydenotot lähetetään
-                        tähän osoitteeseen. Yhteystietoja ei julkaista kolmansille osapuolille.</Modal.Body>
+                        tähän osoitteeseen. Yhteystietoja ei julkaista kolmansille osapuolille.
+                        Korona-apu ei ole vasuussa sovellusen mahdollisista väärinkäytöksistä.</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Sulje

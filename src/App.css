@@ -15,9 +15,22 @@
   margin: 2%;
 }
 
-.button {
-  margin-bottom: 5%
+.postcodenotfound {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
 
+.postcodesuccess {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
+
+.postbutton {
+  margin-bottom: 3%;
+}
+
+.tcbutton {
+  margin-left: 5%;
 }
 
 .answerbutton {
@@ -35,7 +48,7 @@
 }
 
 .navigation {
-  margin-bottom: 5%;
+
 }
 
 .footer {
@@ -48,7 +61,7 @@
 }
 
 .logo {
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .SaanaRailo {

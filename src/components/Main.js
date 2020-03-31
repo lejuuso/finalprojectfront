@@ -32,8 +32,8 @@ class Main extends Component {
             return <p className={"miniheader"}>Kaikkien alueiden "{this.helpNeed()}" -ilmoitukset:</p>
         }
         else{
-            if(this.state.district ===""){return<h3>Alutta ei löytynyt tarkista postinumero! </h3>}
-            else{return <h3>Alueen {this.state.district} ({this.props.districtInfo}) {this.helpNeed()} ilmoitukset:</h3>}
+            if(this.state.district ===""){return<p className={"postcodenotfound"}>Alutta ei löytynyt, tarkista postinumero!</p>}
+            else{return <p className={"postcodesuccess"}>Alueen {this.state.district} ({this.props.districtInfo}) "{this.helpNeed()}" -ilmoitukset:</p>}
         }
     }
     //renderTestfield(){return <h3>Main Props: district: {this.props.districtInfo} help: {this.helpNeed()} </h3>}
