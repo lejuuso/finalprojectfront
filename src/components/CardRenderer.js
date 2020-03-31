@@ -27,7 +27,7 @@ class CardRenderer extends Component {
         return(
 
             <CardColumns  style={{display: 'responsive'}}>
-            <Card border="primary" style={{ width: '25rem' }} >
+            <Card border="warning" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
                 <Card.Body>
                     <Card.Title><b>{this.props.headline}</b></Card.Title>
