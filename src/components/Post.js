@@ -164,7 +164,7 @@ class Post extends React.Component {
     render() {
         return (
             <>
-                <Button className={"button"} variant="warning" onClick={this.handleShow}>
+                <Button className={"postbutton"} variant="warning" onClick={this.handleShow}>
                     Jätä ilmoitus
                 </Button>
 
