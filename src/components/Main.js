@@ -15,9 +15,11 @@ class Main extends Component {
         this.state = {
             typedText: "",
             districtInfo: this.props.districtInfo,
-            district:""
+            district:"",
+
 
         }
+
     }
     helpNeed(){
     if(this.props.helpNeeded){return "apua tarvitaan"}
@@ -32,8 +34,8 @@ class Main extends Component {
             return <p className={"miniheader"}>Kaikkien alueiden "{this.helpNeed()}" -ilmoitukset:</p>
         }
         else{
-            if(this.state.district ===""){return<p className={"postcodenotfound"}>Alutta ei löytynyt, tarkista postinumero!</p>}
-            else{return <p className={"postcodesuccess"}>Alueen {this.state.district} ({this.props.districtInfo}) "{this.helpNeed()}" -ilmoitukset:</p>}
+            if(this.state.district !== undefined){return <h3>Alueen {this.state.district} ({this.props.districtInfo}) {this.helpNeed()} ilmoitukset:</h3>}
+            else{return <h3>Alutta ei löytynyt tarkista postinumero! </h3> }
         }
     }
     //renderTestfield(){return <h3>Main Props: district: {this.props.districtInfo} help: {this.helpNeed()} </h3>}
@@ -41,11 +43,13 @@ class Main extends Component {
     getDistrictName(){
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.props.districtInfo)
         return fetch(url, {method: 'GET'})
+            .catch(error => this.setState({ error, loading: false, district:"error"}))
             .then(response => response.json())
-            .then(data => this.setState({ district: data.districtName }))
+            .then(data => this.setState({ district: data.districtName}))
             //.then(response => this.setState({district: response, loading: false}))
-            .catch(error => this.setState({ error, loading: false}))
+
     }
+
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(prevProps.districtInfo !== this.props.districtInfo){
