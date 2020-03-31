@@ -48,6 +48,7 @@ class Delete extends Component{
         const res_1 = await res.text();
         return console.log(res_1);
     }
+    //renderTestField(){<h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>}
 
     render() {
         return (
@@ -64,7 +65,6 @@ class Delete extends Component{
                         <p>Poistaaksesi ilmoituksen, syötä sähköpostiosoite, jonka ilmoitit ilmoituksen jättämisen yhteydessä.</p>
                         <input name="email" placeholder="Sähköpostisi" value={this.state.email} onChange={this.handleChange}/></Modal.Body>
                     <Modal.Footer>
-                        <h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>
