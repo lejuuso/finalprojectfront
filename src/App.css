@@ -1,10 +1,14 @@
 .App {
   text-align: center;
+  /*background-image: url("./components/bluesplash.png");*/
+  /*background-size: 20%;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: top;*/
+  /*background-attachment: fixed;*/
 }
 
 .header {
   margin: 5%;
-  margin-bottom: 3%;
 }
 
 .button {
