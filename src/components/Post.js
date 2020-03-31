@@ -203,7 +203,7 @@ class Post extends React.Component {
                                 Nimi
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="name" placeholder="Nimi" name="name" value={this.state.name} onChange={this.handleChange}/>
+                                <Form.Control type="name" placeholder="Näkyy ilmoituksessa" name="name" value={this.state.name} onChange={this.handleChange}/>
                             </Col>
                         </Form.Group>
 
@@ -212,16 +212,16 @@ class Post extends React.Component {
                                 Sähköposti
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Sähköposti"/>
+                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Ei näy ilmoituksessa"/>
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formHorizontalLocation">
                             <Form.Label column sm={2}>
-                                Postinumerosi
+                                Postinro
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="location" name="postcode" value={this.state.postcode} onChange={this.handleChange} placeholder="postinumero"/>
+                                <Form.Control type="location" name="postcode" value={this.state.postcode} onChange={this.handleChange} placeholder="Esim. 00170"/>
                             </Col>
                         </Form.Group>
 
