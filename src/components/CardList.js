@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import CardRenderer from "./CardRenderer"
-import DataList from "./DataList";
 
 
  class CardList extends Component {

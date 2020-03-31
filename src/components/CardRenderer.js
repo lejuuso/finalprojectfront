@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import {Card, CardDeck, CardLink, Col} from "react-bootstrap";
-import {Row} from "react-bootstrap";
-import {Button} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import {CardColumns} from "react-bootstrap";
 import Renderer from "./Renderer.css"
-import {Container} from "react-bootstrap";
 import {Badge} from "react-bootstrap"
 import Contact from "./Contact";
 import Delete from "./Delete";
@@ -27,7 +24,7 @@ class CardRenderer extends Component {
         return(
 
             <CardColumns  style={{display: 'responsive'}}>
-            <Card border="primary" style={{ width: '25rem' }} >
+            <Card border="warning" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
                 <Card.Body>
                     <Card.Title><b>{this.props.headline}</b></Card.Title>

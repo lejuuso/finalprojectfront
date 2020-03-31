@@ -1,7 +1,6 @@
-import React, {Component, useState} from "react"
+import React, {Component} from "react"
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import {Form} from "react-bootstrap";
 
 
 class Contact extends Component {
@@ -35,7 +34,7 @@ class Contact extends Component {
 
     addNewAd(){
 
-        const url = 'contact'
+        const url = 'https://qx4p2dnjdf.execute-api.eu-west-1.amazonaws.com/test/contact'
         let adAsJson = JSON.stringify({
             email: this.state.email,
             message: this.state.message,

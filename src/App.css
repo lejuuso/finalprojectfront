@@ -1,9 +1,12 @@
 .App {
+
   text-align: center;
 }
 
 .header {
+
   margin: 5%;
+  margin-bottom: 3%;
 }
 
 .button {

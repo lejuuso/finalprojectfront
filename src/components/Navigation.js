@@ -35,6 +35,7 @@ class Navigation extends Component{
         this.setState({eventTarget:name})
     }
 
+
     handleClick(){
         this.setState({districtInfo: this.state.districtSearch})
     }
@@ -55,9 +56,6 @@ class Navigation extends Component{
         lähetettävä tektsi: {this.state.districtInfo} <br/>
         tekstikenttä: {this.state.districtSearch} <br/>
         Event target: {this.state.eventTarget} HelpNeeded: {this.checkHelpNeed()}</h2>}
-
-
-
 
 
 
