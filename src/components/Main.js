@@ -31,7 +31,7 @@ class Main extends Component {
     }
     renderInfo(){
         if(this.props.districtInfo===""){
-            return <h3>Kaikki alueiden {this.helpNeed()} ilmoitukset:</h3>
+            return <p className={"miniheader"}>Kaikkien alueiden "{this.helpNeed()}" -ilmoitukset:</p>
         }
         else{
             if(this.state.district !== undefined){return <h3>Alueen {this.state.district} ({this.props.districtInfo}) {this.helpNeed()} ilmoitukset:</h3>}
