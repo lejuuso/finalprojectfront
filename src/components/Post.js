@@ -69,7 +69,7 @@ class Post extends React.Component {
 
     }
     addNewHelpOfferedAd(){
-        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/insert"
+        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/helper/api/insert"
         let adAsJson = this.createJsonString()
         console.log("Add data as json: " +adAsJson)
         return fetch(url, {
@@ -132,6 +132,13 @@ class Post extends React.Component {
         return JsonString
 
     }
+    renderTestfield(){return<div><p>Testfield: Name: {this.state.name} Email: {this.state.email}</p>
+        <p>Postinumero: {this.state.postcode}</p>
+        <p>Kaupassakäynti: {this.state.groceries}</p>
+        <p>Lastenhoito: {this.state.childCare}</p>
+        <p>Koiran ulkoilutus: {this.state.dogOut}</p>
+        <p>Kuvaus: {this.state.description}</p>
+        <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>}
 
     handleCheck(event){
         const target = event.target;
@@ -289,13 +296,6 @@ class Post extends React.Component {
                                 <Form.Check label="Hyväksyn ehdot*" onClick={this.handleAgreeToTerms}/>
                             </Col>
                         </Form.Group>
-                        <div><p>Testfield: Name: {this.state.name} Email: {this.state.email}</p>
-                            <p>Postinumero: {this.state.postcode}</p>
-                            <p>Kaupassakäynti: {this.state.groceries}</p>
-                            <p>Lastenhoito: {this.state.childCare}</p>
-                            <p>Koiran ulkoilutus: {this.state.dogOut}</p>
-                            <p>Kuvaus: {this.state.description}</p>
-                            <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>
                     </Form>
 
                     <Modal.Body>* Ilmoituksen jättämisen ehdot: hyväksyn, että

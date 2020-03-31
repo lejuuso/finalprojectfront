@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import CardList from "./CardList"
 
-class HelperOfferedAdds extends Component{
+class HelpWantedAdds extends Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -13,7 +13,7 @@ class HelperOfferedAdds extends Component{
     }
 
     componentDidMount() {
-        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/helper/api/help', {method: 'GET'})
+        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/all', {method: 'GET'})
             .then(response => response.json())
             .then(response => this.setState({userdata: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
@@ -34,4 +34,4 @@ class HelperOfferedAdds extends Component{
 
 
 }
-export default HelperOfferedAdds
+export default HelpWantedAdds
