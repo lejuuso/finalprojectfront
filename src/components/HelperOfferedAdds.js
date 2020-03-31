@@ -13,7 +13,7 @@ class HelperOfferedAdds extends Component{
     }
 
     componentDidMount() {
-        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/help', {method: 'GET'})
+        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/helper/api/help', {method: 'GET'})
             .then(response => response.json())
             .then(response => this.setState({userdata: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
@@ -28,7 +28,7 @@ class HelperOfferedAdds extends Component{
         if (this.state.loading) return <div>Loading...</div>;
         if (this.state.error) return <div>Error</div>;
         console.log(this.state.userdata)
-        if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
+        if (this.state.userdata.length >= 1) return <CardList districtInfo="all" data={this.state.userdata}></CardList>
         return <div>No data was found</div>
     }
 

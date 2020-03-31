@@ -49,6 +49,7 @@ class Delete extends Component{
         const res_1 = await res.text();
         return console.log(res_1);
     }
+    //renderTestField(){<h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>}
 
     render() {
         return (
@@ -63,7 +64,6 @@ class Delete extends Component{
                     </Modal.Header>
                     <Modal.Body><input name="email" value={this.state.email} onChange={this.handleChange}/></Modal.Body>
                     <Modal.Footer>
-                        <h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>

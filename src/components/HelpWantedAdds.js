@@ -28,7 +28,7 @@ class HelpWantedAdds extends Component{
         if (this.state.loading) return <div>Loading...</div>;
         if (this.state.error) return <div>Error</div>;
         console.log(this.state.userdata)
-        if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
+        if (this.state.userdata.length >= 1) return <CardList districtInfo="all" data={this.state.userdata}></CardList>
         return <div>No data was found</div>
     }
 

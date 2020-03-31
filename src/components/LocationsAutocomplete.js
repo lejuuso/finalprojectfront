@@ -4,8 +4,7 @@ import Autocomplete from "./Autocomplete";
 
 function LocationsAutocomplete() {
     return (
-        <div>
-            <Autocomplete
+        <Autocomplete
                 suggestions={[
                         "Helsinki Keskusta - Etu-Töölö",
                         "Punavuori",
@@ -181,8 +180,7 @@ function LocationsAutocomplete() {
                         "Riihikallio"
                 ]}
             />
-        </div>
-    );
+        );
 }
 
 
