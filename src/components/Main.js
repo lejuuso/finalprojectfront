@@ -29,7 +29,7 @@ class Main extends Component {
     }
     renderInfo(){
         if(this.props.districtInfo===""){
-            return <h3>Kaikki alueiden {this.helpNeed()} ilmoitukset:</h3>
+            return <p className={"miniheader"}>Kaikkien alueiden "{this.helpNeed()}" -ilmoitukset:</p>
         }
         else{
             if(this.state.district ===""){return<h3>Alutta ei löytynyt tarkista postinumero! </h3>}

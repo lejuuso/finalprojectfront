@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
 .App {
 
   text-align: center;
 }
 
 .header {
+  margin-top: 5%;
+  font-family: 'Fredoka One', cursive;
+}
 
-  margin: 5%;
-  margin-bottom: 3%;
+.miniheader {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
 }
 
 .button {
