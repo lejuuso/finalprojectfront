@@ -293,7 +293,7 @@ class Post extends React.Component {
                         </Form.Group>
                         <Form.Group as={Row} controlId="formHorizontalCheck">
                             <Col sm={{span: 10, offset: 2}}>
-                                <Form.Check label="Hyväksyn ehdot*" onClick={this.handleAgreeToTerms}/>
+                                <Form.Check label="Hyväksyn ehdot*" checked={this.state.agreedToTerms} onClick={this.handleAgreeToTerms}/>
                             </Col>
                         </Form.Group>
                     </Form>
