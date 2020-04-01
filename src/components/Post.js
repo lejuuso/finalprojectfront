@@ -14,7 +14,7 @@ class Post extends React.Component {
         this.addNewHelpOfferedAd =this.addNewHelpOfferedAd.bind(this)
         this.handleAgreeToTerms =this.handleAgreeToTerms.bind(this)
         this.handCloseTermsMessage = this.handCloseTermsMessage.bind(this)
-        //this.createJsonString= this.createJsonString.bind(this)
+
 
         this.state = {
             show: false,
@@ -33,6 +33,8 @@ class Post extends React.Component {
             helpWanted: "true",
             helpOffered: false,
             agreedToTerms: false,
+            latitude:"",
+            longitude:""
         };
     }
     handleClose(){
@@ -48,9 +50,9 @@ class Post extends React.Component {
     handleSubmit(){
         if(this.state.agreedToTerms === true) {
             if (this.state.helpWanted === "true") {
-                this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+                this.addDistrictData().then(() => this.addNewAd()).then(() => this.handleClose());
             } else {
-                this.addDistrictName().then(() => this.addNewHelpOfferedAd()).then(() => this.handleClose());
+                this.addDistrictData().then(() => this.addNewHelpOfferedAd()).then(() => this.handleClose());
             }
         }
         else{
@@ -58,11 +60,11 @@ class Post extends React.Component {
             }
     }
 
-    addDistrictName(){
+    addDistrictData(){
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
         return fetch(url, {method: 'GET'})
             .then(response => response.json())
-            .then(data => this.setState({ district: data.districtName }))
+            .then(data => this.setState({ district: data.districtNameFin, latitude: data.latitude, longitude: data.longitude}))
             //.then(response => this.setState({district: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
             console.log("This State: " +this.state.district)
@@ -127,7 +129,9 @@ class Post extends React.Component {
             dogOut: this.state.childCare,
             outdoorCompany: this.state.outdoorCompany,
             takingOutTrash: this.state.takingOutTrash,
-            other: this.state.other
+            other: this.state.other,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         })
         return JsonString
 
