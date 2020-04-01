@@ -62,7 +62,10 @@ class Post extends React.Component {
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
         return fetch(url, {method: 'GET'})
             .then(response => response.json())
-            .then(data => this.setState({ district: data.districtName }))
+            .then(data => this.setState({ district: data.districtName,
+                                                latitude: data.latitude,
+                                                longitude: data.longitude
+                                                }))
             //.then(response => this.setState({district: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
             console.log("This State: " +this.state.district)
@@ -127,7 +130,9 @@ class Post extends React.Component {
             dogOut: this.state.childCare,
             outdoorCompany: this.state.outdoorCompany,
             takingOutTrash: this.state.takingOutTrash,
-            other: this.state.other
+            other: this.state.other,
+            latitude: this.state.latitude,
+            longitude: this.state.longitude
         })
         return JsonString
 

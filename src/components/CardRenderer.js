@@ -8,6 +8,7 @@ import {Container} from "react-bootstrap";
 import {Badge} from "react-bootstrap"
 import Contact from "./Contact";
 import Delete from "./Delete";
+import Coordinates from "./Coordinates";
 
 class CardRenderer extends Component {
     constructor(props, context) {
@@ -23,9 +24,10 @@ class CardRenderer extends Component {
     }
 
     render() {
+        console.log(this.props)
 
         return(
-
+            <div>
             <CardColumns  style={{display: 'responsive'}}>
             <Card border="primary" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
@@ -44,10 +46,10 @@ class CardRenderer extends Component {
                     <div><Delete id={this.props.id}/></div>
                 </Card.Body>
                 </Card>
-             </CardColumns>
+            </CardColumns>
 
-
-
+            <Coordinates latitude={this.props.latitude} longitude={this.props.longitude}/>
+            </div>
 
 
         );}}
