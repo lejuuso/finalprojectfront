@@ -24,13 +24,13 @@ class Post extends React.Component {
             postcode: "",
             district: "",
             description: "",
-            groceries: "false",
-            childCare: "false",
-            dogOut: "false",
-            outdoorCompany: "false",
-            takingOutTrash: "false",
-            other: "false",
-            helpWanted: "true",
+            groceries: false,
+            childCare: false,
+            dogOut: false,
+            outdoorCompany: false,
+            takingOutTrash: false,
+            other: false,
+            helpWanted: false,
             helpOffered: false,
             agreedToTerms: false,
             latitude:"",
@@ -126,7 +126,7 @@ class Post extends React.Component {
             description: this.state.description,
             groceries: this.state.groceries,
             childCare: this.state.childCare,
-            dogOut: this.state.childCare,
+            dogOut: this.state.dogOut,
             outdoorCompany: this.state.outdoorCompany,
             takingOutTrash: this.state.takingOutTrash,
             other: this.state.other,
@@ -148,9 +148,9 @@ class Post extends React.Component {
         const target = event.target;
         const name = target.name;
         var value = ""
-        if(this.state[name]==="false"){
-        var value = "true"}
-        else{var value = "false"}
+        if(this.state[name]===false){
+        var value = true}
+        else{var value = false}
         this.setState({
             [name]: value
         });
@@ -244,36 +244,42 @@ class Post extends React.Component {
                                 <Col sm={10}>
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.groceries}
                                         label="Ruokakaupassa käynti"
                                         name="groceries"
                                         id="formHorizontalRadios1"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.childCare}
                                         label="Lastenhoito"
                                         name="childCare"
                                         id="formHorizontalRadios2"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.dogOut}
                                         label="Koiran ulkoilutus"
                                         name="dogOut"
                                         id="formHorizontalRadios3"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.outdoorCompany}
                                         label="Ulkoiluseuraa"
                                         name="outdoorCompany"
                                         id="formHorizontalRadios4"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.takingOutTrash}
                                         label="Roskien vienti"
                                         name="takingOutTrash"
                                         id="formHorizontalRadios5"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.other}
                                         label="Muu"
                                         name="other"
                                         id="formHorizontalRadios6"

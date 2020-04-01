@@ -45,7 +45,7 @@ class Main extends Component {
         return fetch(url, {method: 'GET'})
             .catch(error => this.setState({ error, loading: false, district:"error"}))
             .then(response => response.json())
-            .then(data => this.setState({ district: data.districtName}))
+            .then(data => this.setState({ district: data.districtNameFin}))
             //.then(response => this.setState({district: response, loading: false}))
 
     }
