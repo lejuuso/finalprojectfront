@@ -1,14 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
 .App {
+
   text-align: center;
 }
 
 .header {
-  margin: 5%;
+  margin-top: 5%;
+  font-family: 'Fredoka One', cursive;
 }
 
-.button {
-  margin-bottom: 5%
+.miniheader {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
 
+.postcodenotfound {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
+
+.postcodesuccess {
+  font-family: 'Fredoka One', cursive;
+  margin: 2%;
+}
+
+.postbutton {
+  margin-bottom: 3%;
+}
+
+.tcbutton {
+  margin-left: 5%;
 }
 
 .answerbutton {
@@ -26,7 +48,7 @@
 }
 
 .navigation {
-  margin-bottom: 5%;
+
 }
 
 .footer {
@@ -39,7 +61,7 @@
 }
 
 .logo {
-  margin-bottom: 5%;
+  margin-bottom: 3%;
 }
 
 .SaanaRailo {

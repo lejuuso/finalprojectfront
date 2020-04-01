@@ -1,47 +1,69 @@
 import React, {Component} from "react";
 import CardList from "./CardList"
 import HelperOfferedAdds from "./HelperOfferedAdds";
+import HelpWantedAdds from "./HelpWantedAdds";
+import Autocomplete from "./Autocomplete";
+import LocationsAutocomplete from "./LocationsAutocomplete";
+import AddsByDistrict from "./AddsByDistrict";
 
 
 
 class Main extends Component {
 
-    //await
     constructor(props) {
         super(props);
         this.state = {
-            userdata: [],
-            loading: true,
-            error: null
+            typedText: "",
+            districtInfo: this.props.districtInfo,
+            district:"",
+
+
         }
-    this.renderHelpneeded = this.renderHelpneeded.bind(this)
+
+    }
+    helpNeed(){
+    if(this.props.helpNeeded){return "apua tarvitaan"}
+    else{return "apua tarjotaan"}
     }
 
-    componentDidMount() {
-        fetch('http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/all', {method: 'GET'})
-        .then(response => response.json())
-        .then(response => this.setState({userdata: response, loading: false}))
-        .catch(error => this.setState({ error, loading: false}))
+    whatToRender(){
+        return <div> <AddsByDistrict district={this.props.districtInfo} helpNeeded={this.props.helpNeeded} /></div>
+    }
+    renderInfo(){
+        if(this.props.districtInfo===""){
+            return <p className={"miniheader"}>Kaikkien alueiden "{this.helpNeed()}" -ilmoitukset:</p>
+        }
+        else{
+            if(this.state.district !== undefined){return <h3>Alueen {this.state.district} ({this.props.districtInfo}) {this.helpNeed()} ilmoitukset:</h3>}
+            else{return <h3>Alutta ei löytynyt tarkista postinumero! </h3> }
+        }
+    }
+    //renderTestfield(){return <h3>Main Props: district: {this.props.districtInfo} help: {this.helpNeed()} </h3>}
+
+    getDistrictName(){
+        let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.props.districtInfo)
+        return fetch(url, {method: 'GET'})
+            .catch(error => this.setState({ error, loading: false, district:"error"}))
+            .then(response => response.json())
+            .then(data => this.setState({ district: data.districtNameFin}))
+            //.then(response => this.setState({district: response, loading: false}))
+
     }
 
-    renderHelpneeded(){
 
-
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevProps.districtInfo !== this.props.districtInfo){
+            this.getDistrictName()
+        }
     }
 
     render() {
-        if(this.props.helpNeeded){
-            if (this.state.loading) return <div>Loading...</div>;
-            if (this.state.error) return <div>Error</div>;
-            console.log(this.state.userdata)
-            if (this.state.userdata.length >= 1) return <CardList data={this.state.userdata}></CardList>
-            return <div>No data was found</div>
+        return <div>
+            {this.renderInfo()}
+            {this.whatToRender()}
+        </div>
 
-        }
-        else {
-            return <HelperOfferedAdds/>
 
-        }
     }
 
 

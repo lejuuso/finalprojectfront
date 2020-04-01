@@ -2,13 +2,11 @@ import React from 'react';
 import '../App.css';
 import Footer from "./Footer";
 import Header from "./Header";
-import Main from "./Main";
 import Post from "./Post";
-import Delete from "./Delete";
-import Contact from "./Contact";
 import Navigation from "./Navigation";
 import CardList from "./CardList";
 import HelpMap from "./HelpMap";
+
 
 
 class App extends React.Component {

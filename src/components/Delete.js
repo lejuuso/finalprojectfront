@@ -1,7 +1,6 @@
-import React, {Component, useState} from "react"
+import React, {Component} from "react"
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import {Form} from "react-bootstrap";
 
 class Delete extends Component{
     constructor(props, context) {
@@ -49,6 +48,7 @@ class Delete extends Component{
         const res_1 = await res.text();
         return console.log(res_1);
     }
+    //renderTestField(){<h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>}
 
     render() {
         return (
@@ -59,16 +59,17 @@ class Delete extends Component{
 
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Syötä sähköposti</Modal.Title>
+                        <Modal.Title>Poista ilmoituksesi</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body><input name="email" value={this.state.email} onChange={this.handleChange}/></Modal.Body>
+                    <Modal.Body>
+                        <p>Poistaaksesi ilmoituksen, syötä sähköpostiosoite, jonka ilmoitit ilmoituksen jättämisen yhteydessä.</p>
+                        <input name="email" placeholder="Sähköpostisi" value={this.state.email} onChange={this.handleChange}/></Modal.Body>
                     <Modal.Footer>
-                        <h3>Testfield: email: {this.state.email} id: {this.props.id}</h3>
                         <Button variant="secondary" onClick={this.handleClose}>
                             Peruuta
                         </Button>
                         <Button type="submit" variant="primary" onClick={this.handleDelete}>
-                            Poista
+                            Poista ilmoitus
                         </Button>
                     </Modal.Footer>
                 </Modal>

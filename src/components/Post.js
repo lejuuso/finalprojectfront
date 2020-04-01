@@ -1,4 +1,4 @@
-import React, {Component, useState} from "react"
+import React from "react"
 import {Modal, Button, Form, Col, Row} from "react-bootstrap"
 
 class Post extends React.Component {
@@ -14,7 +14,7 @@ class Post extends React.Component {
         this.addNewHelpOfferedAd =this.addNewHelpOfferedAd.bind(this)
         this.handleAgreeToTerms =this.handleAgreeToTerms.bind(this)
         this.handCloseTermsMessage = this.handCloseTermsMessage.bind(this)
-        //this.createJsonString= this.createJsonString.bind(this)
+
 
         this.state = {
             show: false,
@@ -24,15 +24,17 @@ class Post extends React.Component {
             postcode: "",
             district: "",
             description: "",
-            groceries: "false",
-            childCare: "false",
-            dogOut: "false",
-            outdoorCompany: "false",
-            takingOutTrash: "false",
-            other: "false",
-            helpWanted: "true",
+            groceries: false,
+            childCare: false,
+            dogOut: false,
+            outdoorCompany: false,
+            takingOutTrash: false,
+            other: false,
+            helpWanted: false,
             helpOffered: false,
             agreedToTerms: false,
+            latitude:"",
+            longitude:""
         };
     }
     handleClose(){
@@ -48,9 +50,9 @@ class Post extends React.Component {
     handleSubmit(){
         if(this.state.agreedToTerms === true) {
             if (this.state.helpWanted === "true") {
-                this.addDistrictName().then(() => this.addNewAd()).then(() => this.handleClose());
+                this.addDistrictData().then(() => this.addNewAd()).then(() => this.handleClose());
             } else {
-                this.addDistrictName().then(() => this.addNewHelpOfferedAd()).then(() => this.handleClose());
+                this.addDistrictData().then(() => this.addNewHelpOfferedAd()).then(() => this.handleClose());
             }
         }
         else{
@@ -58,21 +60,18 @@ class Post extends React.Component {
             }
     }
 
-    addDistrictName(){
+    addDistrictData(){
         let url = ("http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/district/api/postnumber/" +this.state.postcode)
         return fetch(url, {method: 'GET'})
             .then(response => response.json())
-            .then(data => this.setState({ district: data.districtName,
-                                                latitude: data.latitude,
-                                                longitude: data.longitude
-                                                }))
+            .then(data => this.setState({ district: data.districtNameFin, latitude: data.latitude, longitude: data.longitude}))
             //.then(response => this.setState({district: response, loading: false}))
             .catch(error => this.setState({ error, loading: false}))
             console.log("This State: " +this.state.district)
 
     }
     addNewHelpOfferedAd(){
-        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/api/insert"
+        const url = "http://finalprojectapplication-env.eba-bixfaf3m.eu-west-1.elasticbeanstalk.com/helper/api/insert"
         let adAsJson = this.createJsonString()
         console.log("Add data as json: " +adAsJson)
         return fetch(url, {
@@ -127,7 +126,7 @@ class Post extends React.Component {
             description: this.state.description,
             groceries: this.state.groceries,
             childCare: this.state.childCare,
-            dogOut: this.state.childCare,
+            dogOut: this.state.dogOut,
             outdoorCompany: this.state.outdoorCompany,
             takingOutTrash: this.state.takingOutTrash,
             other: this.state.other,
@@ -137,14 +136,21 @@ class Post extends React.Component {
         return JsonString
 
     }
+    renderTestfield(){return<div><p>Testfield: Name: {this.state.name} Email: {this.state.email}</p>
+        <p>Postinumero: {this.state.postcode}</p>
+        <p>Kaupassakäynti: {this.state.groceries}</p>
+        <p>Lastenhoito: {this.state.childCare}</p>
+        <p>Koiran ulkoilutus: {this.state.dogOut}</p>
+        <p>Kuvaus: {this.state.description}</p>
+        <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>}
 
     handleCheck(event){
         const target = event.target;
         const name = target.name;
         var value = ""
-        if(this.state[name]==="false"){
-        var value = "true"}
-        else{var value = "false"}
+        if(this.state[name]===false){
+        var value = true}
+        else{var value = false}
         this.setState({
             [name]: value
         });
@@ -162,7 +168,7 @@ class Post extends React.Component {
     render() {
         return (
             <>
-                <Button className={"button"} variant="warning" onClick={this.handleShow}>
+                <Button className={"postbutton"} variant="warning" onClick={this.handleShow}>
                     Jätä ilmoitus
                 </Button>
 
@@ -208,7 +214,7 @@ class Post extends React.Component {
                                 Nimi
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="name" placeholder="Nimi" name="name" value={this.state.name} onChange={this.handleChange}/>
+                                <Form.Control type="name" placeholder="Näkyy ilmoituksessa" name="name" value={this.state.name} onChange={this.handleChange}/>
                             </Col>
                         </Form.Group>
 
@@ -217,16 +223,16 @@ class Post extends React.Component {
                                 Sähköposti
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Sähköposti"/>
+                                <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Ei näy ilmoituksessa"/>
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} controlId="formHorizontalLocation">
                             <Form.Label column sm={2}>
-                                Postinumerosi
+                                Postinro
                             </Form.Label>
                             <Col sm={10}>
-                                <Form.Control type="location" name="postcode" value={this.state.postcode} onChange={this.handleChange} placeholder="postinumero"/>
+                                <Form.Control type="location" name="postcode" value={this.state.postcode} onChange={this.handleChange} placeholder="Esim. 00170"/>
                             </Col>
                         </Form.Group>
 
@@ -238,36 +244,42 @@ class Post extends React.Component {
                                 <Col sm={10}>
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.groceries}
                                         label="Ruokakaupassa käynti"
                                         name="groceries"
                                         id="formHorizontalRadios1"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.childCare}
                                         label="Lastenhoito"
                                         name="childCare"
                                         id="formHorizontalRadios2"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.dogOut}
                                         label="Koiran ulkoilutus"
                                         name="dogOut"
                                         id="formHorizontalRadios3"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.outdoorCompany}
                                         label="Ulkoiluseuraa"
                                         name="outdoorCompany"
                                         id="formHorizontalRadios4"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.takingOutTrash}
                                         label="Roskien vienti"
                                         name="takingOutTrash"
                                         id="formHorizontalRadios5"
                                     />
                                     <Form.Check
                                         onClick={this.handleCheck}
+                                        checked={this.state.other}
                                         label="Muu"
                                         name="other"
                                         id="formHorizontalRadios6"
@@ -291,16 +303,9 @@ class Post extends React.Component {
                         </Form.Group>
                         <Form.Group as={Row} controlId="formHorizontalCheck">
                             <Col sm={{span: 10, offset: 2}}>
-                                <Form.Check label="Hyväksyn ehdot*" onClick={this.handleAgreeToTerms}/>
+                                <Form.Check label="Hyväksyn ehdot*" checked={this.state.agreedToTerms} onClick={this.handleAgreeToTerms}/>
                             </Col>
                         </Form.Group>
-                        <div><p>Testfield: Name: {this.state.name} Email: {this.state.email}</p>
-                            <p>Postinumero: {this.state.postcode}</p>
-                            <p>Kaupassakäynti: {this.state.groceries}</p>
-                            <p>Lastenhoito: {this.state.childCare}</p>
-                            <p>Koiran ulkoilutus: {this.state.dogOut}</p>
-                            <p>Kuvaus: {this.state.description}</p>
-                            <p>HelpWanted; {this.state.helpWanted}, HelpOffered: {this.state.helpOffered}</p></div>
                     </Form>
 
                     <Modal.Body>* Ilmoituksen jättämisen ehdot: hyväksyn, että
