@@ -25,18 +25,18 @@ class CardRenderer extends Component {
 
             <CardColumns  style={{display: 'responsive'}}>
             <Card border="warning" style={{ width: '25rem' }} >
-                <Card.Header>{this.props.name}<br/>{this.props.district}</Card.Header>
+                <Card.Header>{this.props.name}<br/><b>{this.props.district}</b></Card.Header>
                 <Card.Body>
                     <Card.Title><b>{this.props.headline}</b></Card.Title>
                     <Card.Text>
                      {this.props.description}
                     </Card.Text>
-                    <Badge variant="info">{this.renderBadge(this.props.dogout, "koira")}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.groceries, "kauppa")}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.childcare, "lastenhoito")}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.takingouttrash, "roskat")}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.outdoorcompany, "ulkoilu")}</Badge>{' '}
-                    <Badge variant="info">{this.renderBadge(this.props.other, "muu")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.dogout, "Koiran ulkoilutus")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.groceries, "Kaupassakäynti")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.childcare, "Lastenhoito")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.takingouttrash, "Roskien vienti")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.outdoorcompany, "Ulkoiluseura")}</Badge>{' '}
+                    <Badge variant="dark">{this.renderBadge(this.props.other, "Muu")}</Badge>{' '}
                     <div><Contact id= {this.props.id}/></div>
                     <div><Delete id={this.props.id}/></div>
                 </Card.Body>
