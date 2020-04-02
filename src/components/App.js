@@ -6,6 +6,7 @@ import Post from "./Post";
 import Navigation from "./Navigation";
 import CardList from "./CardList";
 import HelpMap from "./HelpMap";
+import Coordinates from "./Coordinates";
 
 
 
@@ -33,7 +34,7 @@ class App extends React.Component {
           <Post/>
           <Navigation/>
           <Footer/>
-          <HelpMap/>
+            <Coordinates/>
         </div>)
   }
 }

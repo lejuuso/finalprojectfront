@@ -7,19 +7,25 @@ export class HelpMap extends Component {
     constructor(props) {
         super(props);
 
-        this.state= {
-                latitude: "",
-                longitude: ""
-
-        }
-
-
 
     }
+        displayMarkers = () => {
+
+                return <Marker position={{
+                    lat: this.props.latitude,
+                    lng: this.props.longitude
+                }}
+                />
+            }
+
+
+
+
+
 
 
     render() {
-        console.log("löytyykö" + this.state.latitude + this.state.longitude)
+       // console.log("löytyykö" + this.props.latitude + this.props.longitude)
         return (
             <Map
                 google={this.props.google}
@@ -27,7 +33,7 @@ export class HelpMap extends Component {
                 style={mapStyles}
                 initialCenter={{ lat: 60.166, lng: 24.943}}
             >
-            <Marker position={this.state.coordinates}/>
+                {this.props.coordinates}
             </Map>
         );
     }
