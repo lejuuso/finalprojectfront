@@ -5,6 +5,7 @@ import Renderer from "./Renderer.css"
 import {Badge} from "react-bootstrap"
 import Contact from "./Contact";
 import Delete from "./Delete";
+import Coordinates from "./Coordinates";
 
 class CardRenderer extends Component {
     constructor(props, context) {
@@ -20,6 +21,7 @@ class CardRenderer extends Component {
     }
 
     render() {
+        console.log(this.props)
 
         return(
 
@@ -41,12 +43,7 @@ class CardRenderer extends Component {
                     <div><Delete id={this.props.id}/></div>
                 </Card.Body>
                 </Card>
-             </CardColumns>
-
-
-
-
-
+            </CardColumns>
         );}}
 
 export default CardRenderer;

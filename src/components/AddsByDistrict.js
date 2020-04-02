@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardList from "./CardList"
+import Coordinates from "./Coordinates";
 
 class AddsByDistrict extends Component{
     constructor(props) {
@@ -46,7 +47,8 @@ class AddsByDistrict extends Component{
         if (this.state.loading) return <div>Loading...</div>;
         if (this.state.error) return <div>Error</div>;
         console.log(this.state.userdata)
-        if (this.state.userdata.length >= 1) return <div><CardList districtInfo={this.props.district} helpNeeded={this.props.helpNeeded} data={this.state.userdata}></CardList></div>
+        if (this.state.userdata.length >= 1) return <div><CardList districtInfo={this.props.district} helpNeeded={this.props.helpNeeded} data={this.state.userdata}></CardList>
+             </div>
         return <div>No data was found</div>
     }
 

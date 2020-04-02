@@ -4,6 +4,11 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Post from "./Post";
 import Navigation from "./Navigation";
+import CardList from "./CardList";
+import HelpMap from "./HelpMap";
+import Coordinates from "./Coordinates";
+import CardRenderer from "./CardRenderer";
+
 
 
 class App extends React.Component {
@@ -26,9 +31,12 @@ class App extends React.Component {
             />
 
           <Header/>
+
           <Post/>
           <Navigation/>
           <Footer/>
+          <Coordinates/>
+
         </div>)
   }
 }
