@@ -6,9 +6,8 @@ import {Coordinates} from "./Coordinates.js";
 export class HelpMap extends Component {
     constructor(props) {
         super(props);
-
-
     }
+
         displayMarkers = () => {
 
                 return <Marker position={{
@@ -18,14 +17,7 @@ export class HelpMap extends Component {
                 />
             }
 
-
-
-
-
-
-
     render() {
-       // console.log("löytyykö" + this.props.latitude + this.props.longitude)
         return (
             <Map
                 google={this.props.google}
@@ -45,4 +37,7 @@ export default GoogleApiWrapper({
 const mapStyles = {
     width: '60%',
     height: '60%',
+    marginLeft: '20%'
+
+
 };

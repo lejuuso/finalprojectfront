@@ -34,7 +34,8 @@ class App extends React.Component {
           <Post/>
           <Navigation/>
           <Footer/>
-            <Coordinates/>
+          <Coordinates/>
+
         </div>)
   }
 }
