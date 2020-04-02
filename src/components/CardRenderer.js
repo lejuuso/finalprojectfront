@@ -44,11 +44,6 @@ class CardRenderer extends Component {
                 </Card.Body>
                 </Card>
             </CardColumns>
-
-
-
-
-
         );}}
 
 export default CardRenderer;

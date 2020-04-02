@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 import CardList from "./CardList";
 import HelpMap from "./HelpMap";
 import Coordinates from "./Coordinates";
+import CardRenderer from "./CardRenderer";
 
 
 
