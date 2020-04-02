@@ -24,7 +24,7 @@ class CardRenderer extends Component {
         console.log(this.props)
 
         return(
-            <div>
+
             <CardColumns  style={{display: 'responsive'}}>
             <Card border="warning" style={{ width: '25rem' }} >
                 <Card.Header>{this.props.name}<br/><b>{this.props.district}</b></Card.Header>
@@ -44,11 +44,6 @@ class CardRenderer extends Component {
                 </Card.Body>
                 </Card>
             </CardColumns>
-
-
-            </div>
-
-
         );}}
 
 export default CardRenderer;

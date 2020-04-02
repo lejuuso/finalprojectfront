@@ -7,6 +7,7 @@ import Navigation from "./Navigation";
 import CardList from "./CardList";
 import HelpMap from "./HelpMap";
 import Coordinates from "./Coordinates";
+import CardRenderer from "./CardRenderer";
 
 
 
@@ -34,7 +35,7 @@ class App extends React.Component {
           <Post/>
           <Navigation/>
           <Footer/>
-            <Coordinates/>
+          <Coordinates/>
         </div>)
   }
 }
