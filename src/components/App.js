@@ -31,12 +31,10 @@ class App extends React.Component {
             />
 
           <Header/>
-
           <Post/>
           <Navigation/>
           <Footer/>
           <Coordinates/>
-
         </div>)
   }
 }

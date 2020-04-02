@@ -38,6 +38,4 @@ const mapStyles = {
     width: '60%',
     height: '60%',
     marginLeft: '20%'
-
-
 };
