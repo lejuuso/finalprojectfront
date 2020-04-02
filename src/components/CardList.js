@@ -19,8 +19,10 @@ import Coordinates from "./Coordinates";
         var cardNodes= this.props.data.map(function(data) {
             if(districtsToShow==="")
             return(
-                
+
+
                 <CardRenderer other={data.other} takingouttrash={data.takingOutTrash} outdoorcompany={data.outdoorCompany} childcare={data.childCare} groceries={data.groceries} dogout={data.dogOut} district={data.districtName} id = {data.id} headline={data.headline} name={data.name} description={data.description} postcode = {data.postcode} latitude = {data.latitude} longitude = {data.longitude}/>
+
 
             );
             else{
