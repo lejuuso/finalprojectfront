@@ -185,7 +185,7 @@ class Post extends React.Component {
                                 <Col sm={10}>
                                     <Form.Check
                                         type="radio"
-                                        label="Tarvitsen apua"
+                                        label="Tarjoan apua"
                                         name="formHorizontalRadios"
                                         id="formHorizontalRadios7"
                                         defaultChecked={true}
@@ -193,7 +193,7 @@ class Post extends React.Component {
                                     />
                                     <Form.Check
                                         type="radio"
-                                        label="Tarjoan apua"
+                                        label="Tarvitsen apua"
                                         name="formHorizontalRadios"
                                         id="formHorizontalRadios8"
                                         onChange={this.handleHelpOfferedOrWanted}
