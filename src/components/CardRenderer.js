@@ -45,7 +45,7 @@ class CardRenderer extends Component {
                 </Card>
             </CardColumns>
 
-            <Coordinates latitude={this.props.latitude} longitude={this.props.longitude}/>
+
             </div>
 
 
